@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-# Import dj-database-url at the beginning of the file.
 import dj_database_url
 import environ
 env = environ.Env()
@@ -105,6 +104,13 @@ DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.        
         default='postgres://mamarbank_pl30_user:lxOaCII7Jylvt58uVkJ1LKmTUuoRzGrZ@dpg-cp94sfn109ks73a43gg0-a.oregon-postgres.render.com/mamarbank_pl30',   
+    )
+}
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://mamarbank_pl30_user:lxOaCII7Jylvt58uVkJ1LKmTUuoRzGrZ@dpg-cp94sfn109ks73a43gg0-a.oregon-postgres.render.com/mamarbank_pl30',
     )
 }
 
