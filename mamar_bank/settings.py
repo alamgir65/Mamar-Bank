@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+# Import dj-database-url at the beginning of the file.
+import dj_database_url
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -86,15 +88,24 @@ WSGI_APPLICATION = 'mamar_bank.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
+
+
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.        
+        default='postgres://mamarbank_pl30_user:lxOaCII7Jylvt58uVkJ1LKmTUuoRzGrZ@dpg-cp94sfn109ks73a43gg0-a.oregon-postgres.render.com/mamarbank_pl30',   
+    )
 }
 
 # Password validation
