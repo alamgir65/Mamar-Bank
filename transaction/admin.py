@@ -1,6 +1,7 @@
 from typing import Any
 from django.contrib import admin
 from .models import Transaction
+from .views import send_transaction_email
 # Register your models here.
 
 
@@ -13,4 +14,5 @@ class TransactionAdmin(admin.ModelAdmin):
             obj.account.balance += obj.amount
             obj.balance_after_transaction = obj.account.balance
             obj.account.save()
+            send_transaction_email(request,obj.account.user,obj.amount,"Loan Approval","transaction/admin_email.html")
         return super().save_model(request,obj,form,change)

@@ -132,6 +132,8 @@ class LoanRequestView(TransactionCreateMixin):
         
         messages.success(self.request, f"Your loan request successfully sent to admin.")
         
+        send_transaction_email(self.request, self.request.user,amount,"Loan Request","transaction/loan_request_email.html")
+        
         return super().form_valid(form)
     
     
