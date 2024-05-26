@@ -24,10 +24,11 @@ def send_transaction_email(request,user, amount, subject, template):
         })
         send_email = EmailMultiAlternatives(subject, '', to=[user.email])
         send_email.attach_alternative(message, "text/html")
-        try:
-            send_email.send()
-        except:
-            messages.error(request, "Somthing wrong to send email")
+        send_email.send()
+        # try:
+        #     send_email.send()
+        # except:
+        #     messages.error(request, "Somthing wrong to send email")
 
 class TransactionCreateMixin(LoginRequiredMixin, CreateView):
     template_name = 'transaction/transaction_form.html'
